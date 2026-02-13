@@ -44,6 +44,7 @@ function loadTeachers() {
                 <td>${teacher.name}</td>
                 <td>${teacher.subject}</td>
                 <td>
+                    <button onclick="editTeacher(${teacher.id})">Edit</button>
                     <button onclick="deleteTeacher(${teacher.id})">Delete</button>
                 </td>
             </tr>
@@ -56,6 +57,22 @@ function deleteTeacher(id) {
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
     teachers = teachers.filter(t => t.id !== id);
+
+    localStorage.setItem("teachers", JSON.stringify(teachers));
+
+    loadTeachers();
+}
+
+function editTeacher(id) {
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    const teacher = teachers.find(t => t.id === id);
+
+    const newName = prompt("Enter new name:", teacher.name);
+    const newSubject = prompt("Enter new subject:", teacher.subject);
+
+    teacher.name = newName;
+    teacher.subject = newSubject;
 
     localStorage.setItem("teachers", JSON.stringify(teachers));
 
