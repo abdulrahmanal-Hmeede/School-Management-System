@@ -13,6 +13,8 @@ const addStudentBtnEmpty = document.getElementById('addStudentBtnEmpty');
 
 // ===== Event Listeners =====
 document.addEventListener('DOMContentLoaded', () => {
+    // Reload students from localStorage
+    students = JSON.parse(localStorage.getItem(STUDENTS_KEY)) || [];
     renderStudents();
     addStudentBtn?.addEventListener('click', redirectToAddStudent);
     addStudentBtnEmpty?.addEventListener('click', redirectToAddStudent);
@@ -20,16 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== Render Students Table =====
 function renderStudents() {
-    studentsBody.innerHTML = '';
-
-    if (students.length === 0) {
-        studentsTable?.style.display = 'none';
-        emptyState?.classList.add('show');
+    // If elements don't exist (not on students.html), skip rendering
+    if (!studentsBody || !studentsTable || !emptyState) {
         return;
     }
 
-    studentsTable?.style.removeProperty('display');
-    emptyState?.classList.remove('show');
+    studentsBody.innerHTML = '';
+
+    if (students.length === 0) {
+        studentsTable.style.display = 'none';
+        emptyState.classList.add('show');
+        return;
+    }
+
+    studentsTable.style.removeProperty('display');
+    emptyState.classList.remove('show');
 
     students.forEach((student, index) => {
         const row = document.createElement('tr');
@@ -69,22 +76,35 @@ function deleteStudent(index) {
     if (confirm('هل أنت متأكد من حذف هذا الطالب؟')) {
         students.splice(index, 1);
         localStorage.setItem(STUDENTS_KEY, JSON.stringify(students));
-        renderStudents();
+        // Only render if elements exist (on students.html page)
+        if (studentsBody) {
+            renderStudents();
+        }
     }
 }
 
 // ===== Add New Student (Called from add-student.html) =====
 function addStudent(studentData) {
+    console.log('addStudent called with:', studentData);
     students.push(studentData);
     localStorage.setItem(STUDENTS_KEY, JSON.stringify(students));
-    renderStudents();
+    console.log('Student saved to localStorage:', students);
+    // Only render if elements exist (on students.html page)
+    if (studentsBody) {
+        renderStudents();
+    }
 }
 
 // ===== Update Student (Called from add-student.html) =====
 function updateStudent(index, studentData) {
+    console.log('updateStudent called with index:', index, 'and data:', studentData);
     students[index] = studentData;
     localStorage.setItem(STUDENTS_KEY, JSON.stringify(students));
-    renderStudents();
+    console.log('Student updated in localStorage:', students);
+    // Only render if elements exist (on students.html page)
+    if (studentsBody) {
+        renderStudents();
+    }
 }
 
 // ===== Get all students (for dashboard) =====

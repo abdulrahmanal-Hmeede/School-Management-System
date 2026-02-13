@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة / تعديل طالب</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/forms.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>نظام المدرسة</h1>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="../../index.html">الرئيسية</a></li>
+                    <li><a href="students.html" class="active">إدارة الطلاب</a></li>
+                    <li><a href="../teachers/teachers.html">إدارة المعلمين</a></li>
+                    <li><a href="../subjects/subjects.html">المواد الدراسية</a></li>
+                    <li><a href="../grades/grades.html">الدرجات</a></li>
+                    <li><a href="../attendance/attendance.html">الحضور والغياب</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2 id="pageTitle">إضافة طالب جديد</h2>
+            </header>
+
+            <div class="form-wrapper">
+                <form id="studentForm" class="student-form">
+                    <div class="form-group">
+                        <label for="studentName">اسم الطالب *</label>
+                        <input type="text" id="studentName" name="studentName" required placeholder="أدخل اسم الطالب">
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentId">رقم القيد *</label>
+                            <input type="text" id="studentId" name="studentId" required placeholder="أدخل رقم القيد">
+                            <span class="error-message" id="idError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grade">الصف الدراسي *</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">اختر الصف</option>
+                                <option value="الأول الابتدائي">الأول الابتدائي</option>
+                                <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                                <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                                <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+                                <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+                                <option value="السادس الابتدائي">السادس الابتدائي</option>
+                                <option value="الأول المتوسط">الأول المتوسط</option>
+                                <option value="الثاني المتوسط">الثاني المتوسط</option>
+                                <option value="الثالث المتوسط">الثالث المتوسط</option>
+                                <option value="الأول الثانوي">الأول الثانوي</option>
+                                <option value="الثاني الثانوي">الثاني الثانوي</option>
+                                <option value="الثالث الثانوي">الثالث الثانوي</option>
+                            </select>
+                            <span class="error-message" id="gradeError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" required placeholder="أدخل البريد الإلكتروني">
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم الهاتف">
+                            <span class="error-message" id="phoneError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">اسم ولي الأمر</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="أدخل اسم ولي الأمر">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parentPhone">رقم هاتف ولي الأمر</label>
+                            <input type="tel" id="parentPhone" name="parentPhone" placeholder="أدخل رقم الهاتف">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">العنوان</label>
+                        <textarea id="address" name="address" rows="3" placeholder="أدخل العنوان"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+                        <button type="button" class="btn btn-secondary" onclick="goBackToStudents()">إلغاء</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../assets/js/students.js"></script>
+    <script src="../../assets/js/add-student.js"></script>
+</body>
+</html>
