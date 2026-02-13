@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المدرسة</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>نظام المدرسة</h1>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html" class="active">الرئيسية</a></li>
+                    <li><a href="pages/students/students.html">إدارة الطلاب</a></li>
+                    <li><a href="pages/teachers/teachers.html">إدارة المعلمين</a></li>
+                    <li><a href="pages/subjects/subjects.html">المواد الدراسية</a></li>
+                    <li><a href="pages/grades/grades.html">الدرجات</a></li>
+                    <li><a href="pages/attendance/attendance.html">الحضور والغياب</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2>لوحة التحكم الرئيسية</h2>
+            </header>
+            <div class="dashboard">
+                <div class="card">
+                    <h3>عدد الطلاب</h3>
+                    <p class="number" id="studentCount">0</p>
+                </div>
+                <div class="card">
+                    <h3>عدد المعلمين</h3>
+                    <p class="number" id="teacherCount">0</p>
+                </div>
+                <div class="card">
+                    <h3>عدد المواد</h3>
+                    <p class="number" id="subjectCount">0</p>
+                </div>
+                <div class="card">
+                    <h3>معدل الحضور</h3>
+                    <p class="number" id="attendanceRate">0%</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
