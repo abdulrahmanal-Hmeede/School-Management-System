@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>نظام الدرجات</title>
+
+<style>
+body{
+    font-family: Arial;
+    direction: rtl;
+    background:#f4f4f4;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.container{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    max-width:900px;
+    margin:auto;
+}
+
+input, select, button{
+    padding:8px;
+    margin:5px;
+}
+
+button{
+    background:#2c3e50;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.8;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+.average{
+    margin-top:15px;
+    font-weight:bold;
+    font-size:18px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h1>إدارة الدرجات</h1>
+
+<!-- نموذج الإدخال -->
+<select id="studentName">
+    <option value="">اختر الطالب</option>
+    <option>محمد</option>
+    <option>أحمد</option>
+    <option>سارة</option>
+</select>
+
+<select id="subjectName">
+    <option value="">اختر المادة</option>
+    <option>رياضيات</option>
+    <option>علوم</option>
+    <option>عربي</option>
+</select>
+
+<input type="number" id="gradeValue" placeholder="أدخل الدرجة">
+
+<button onclick="addGrade()">إضافة</button>
+
+<!-- جدول العرض -->
+<table>
+    <thead>
+        <tr>
+            <th>الطالب</th>
+            <th>المادة</th>
+            <th>الدرجة</th>
+            <th>إجراء</th>
+        </tr>
+    </thead>
+    <tbody id="gradesTable"></tbody>
+</table>
+
+<div class="average" id="averageResult">
+المتوسط: 0
+</div>
+
+</div>
+
+<script>
+
+let grades = JSON.parse(localStorage.getItem("grades")) || [];
+
+function saveData(){
+    localStorage.setItem("grades", JSON.stringify(grades));
+}
+
+function renderTable(){
+    let table = document.getElementById("gradesTable");
+    table.innerHTML = "";
+
+    grades.forEach((grade, index) => {
+        table.innerHTML += `
+        <tr>
+            <td>${grade.student}</td>
+            <td>${grade.subject}</td>
+            <td>${grade.value}</td>
+            <td>
+                <button onclick="deleteGrade(${index})">حذف</button>
+            </td>
+        </tr>
+        `;
+    });
+
+    calculateAverage();
+}
+
+function addGrade(){
+    let student = document.getElementById("studentName").value;
+    let subject = document.getElementById("subjectName").value;
+    let value = document.getElementById("gradeValue").value;
+
+    if(student === "" || subject === "" || value === ""){
+        alert("الرجاء تعبئة جميع الحقول");
+        return;
+    }
+
+    grades.push({
+        student: student,
+        subject: subject,
+        value: Number(value)
+    });
+
+    saveData();
+    renderTable();
+
+    document.getElementById("gradeValue").value = "";
+}
+
+function deleteGrade(index){
+    grades.splice(index,1);
+    saveData();
+    renderTable();
+}
+
+function calculateAverage(){
+    if(grades.length === 0){
+        document.getElementById("averageResult").innerText = "المتوسط: 0";
+        return;
+    }
+
+    let total = 0;
+    grades.forEach(g => {
+        total += g.value;
+    });
+
+    let avg = (total / grades.length).toFixed(2);
+    document.getElementById("averageResult").innerText = "المتوسط: " + avg;
+}
+
+renderTable();
+
+</script>
+
+</body>
+</html>
