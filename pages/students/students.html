@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الطلاب</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>نظام المدرسة</h1>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="../../index.html">الرئيسية</a></li>
+                    <li><a href="students.html" class="active">إدارة الطلاب</a></li>
+                    <li><a href="../teachers/teachers.html">إدارة المعلمين</a></li>
+                    <li><a href="../subjects/subjects.html">المواد الدراسية</a></li>
+                    <li><a href="../grades/grades.html">الدرجات</a></li>
+                    <li><a href="../attendance/attendance.html">الحضور والغياب</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2>إدارة الطلاب</h2>
+                <button class="btn btn-primary" id="addStudentBtn">إضافة طالب جديد</button>
+            </header>
+
+            <!-- Students Table -->
+            <div class="table-container">
+                <table class="students-table" id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الطالب</th>
+                            <th>رقم القيد</th>
+                            <th>رقم الهاتف</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>الصف الدراسي</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsBody">
+                        <!-- Students will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <p>لا توجد بيانات طلاب حالياً</p>
+                <button class="btn btn-primary" id="addStudentBtnEmpty">إضافة طالب</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit/Delete Modal will be here -->
+    <script src="../../assets/js/students.js"></script>
+</body>
+</html>
