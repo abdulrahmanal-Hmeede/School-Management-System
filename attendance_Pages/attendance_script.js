@@ -1,4 +1,3 @@
-
         let students = [];
         let currentFilter = 'all';
         
