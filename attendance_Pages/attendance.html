@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الحضور والغياب</title>
+    <link rel="stylesheet" href="attendance_css.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>تسجيل الحضور والغياب</h1>
+        
+        <div class="input-section">
+            <input type="text" id="studentName" placeholder="أدخل اسم الطالب">
+            <button onclick="addStudent()">إضافة طالب</button>
+        </div>
+        
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterStudents('all')">الكل</button>
+            <button class="filter-btn" onclick="filterStudents('present')">الحضور</button>
+            <button class="filter-btn" onclick="filterStudents('absent')">الغياب</button>
+        </div>
+        
+        <div id="studentsList">
+            <table>
+                <thead>
+                    <tr>
+                        <th>الطالب</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsTableBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="stats" id="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalStudents">0</div>
+                <div class="stat-label">إجمالي الطلاب</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="presentCount">0</div>
+                <div class="stat-label">الحضور</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="absentCount">0</div>
+                <div class="stat-label">الغياب</div>
+            </div>
+        </div>
+    </div>
+    <script src="attendance_script.js"></script>
+</body>
+</html>
