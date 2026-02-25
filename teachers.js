@@ -29,15 +29,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loadTeachers() {
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+    displayTeachers(teachers);
+}
+
+function displayTeachers(teachers) {
+
     const tableBody = document.querySelector("#teachersTable tbody");
 
     if (!tableBody) return;
 
-    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
-
     tableBody.innerHTML = "";
 
     teachers.forEach(teacher => {
+
         const row = `
             <tr>
                 <td>${teacher.id}</td>
@@ -49,6 +54,7 @@ function loadTeachers() {
                 </td>
             </tr>
         `;
+
         tableBody.innerHTML += row;
     });
 }
@@ -77,4 +83,22 @@ function editTeacher(id) {
     localStorage.setItem("teachers", JSON.stringify(teachers));
 
     loadTeachers();
+}
+
+
+function searchTeacher() {
+
+    const searchValue = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    const filteredTeachers = teachers.filter(teacher =>
+        teacher.name.toLowerCase().includes(searchValue) ||
+        teacher.subject.toLowerCase().includes(searchValue)
+    );
+
+    displayTeachers(filteredTeachers);
 }
