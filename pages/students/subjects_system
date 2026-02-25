@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام المواد الدراسية</title>
+</head>
+<body>
+  <h1>نظام المواد الدراسية</h1>
+
+  <div>
+    <label for="subjectName">اسم المادة:</label>
+    <input type="text" id="subjectName" placeholder="أدخل اسم المادة">
+
+    <label for="teacherName">اسم المعلم:</label>
+    <select id="teacherName">
+      <option value="">اختر المعلم</option>
+      <option value="أحمد">أحمد</option>
+      <option value="سارة">سارة</option>
+      <option value="محمد">محمد</option>
+    </select>
+
+    <button onclick="addSubject()">إضافة المادة</button>
+  </div>
+
+  <table id="subjectsTable" border="1" style="margin-top:20px;">
+    <thead>
+      <tr>
+        <th>رقم</th>
+        <th>اسم المادة</th>
+        <th>المعلم</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    let counter = 1;
+
+    function addSubject() {
+      const subjectName = document.getElementById("subjectName").value.trim();
+      const teacherName = document.getElementById("teacherName").value;
+
+      if (subjectName === "" || teacherName === "") {
+        alert("يرجى إدخال اسم المادة واختيار المعلم");
+        return;
+      }
+
+      const table = document.getElementById("subjectsTable").getElementsByTagName("tbody")[0];
+      const newRow = table.insertRow();
+
+      const cell1 = newRow.insertCell(0);
+      const cell2 = newRow.insertCell(1);
+      const cell3 = newRow.insertCell(2);
+
+      cell1.innerHTML = counter++;
+      cell2.innerHTML = subjectName;
+      cell3.innerHTML = teacherName;
+
+      document.getElementById("subjectName").value = "";
+      document.getElementById("teacherName").value = "";
+    }
+  </script>
+</body>
+</html>
+</body>
+</html>
