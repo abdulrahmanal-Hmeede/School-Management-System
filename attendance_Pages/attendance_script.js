@@ -112,11 +112,8 @@
 
 
 
-        // دالة جديدة لتصدير PDF
 function exportToPDF() {
-    // التحقق من وجود مكتبة jspdf
     if (typeof jspdf === 'undefined') {
-        // تحميل مكتبة jspdf إذا لم تكن موجودة
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
         script.onload = generatePDF;
@@ -130,36 +127,32 @@ function generatePDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    // عنوان التقرير
     doc.setFontSize(20);
     doc.setTextColor(102, 126, 234);
-    doc.text('تقرير الحضور والغياب', 105, 20, { align: 'center' });
+    doc.text('Attendance and absence report', 105, 20, { align: 'center' });
     
-    // تاريخ التقرير
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     const today = new Date().toLocaleDateString('ar-EG');
-    doc.text(`تاريخ التقرير: ${today}`, 105, 30, { align: 'center' });
+    doc.text(`report date : ${today}`, 105, 30, { align: 'center' });
     
-    // إحصائيات عامة
     const total = students.length;
     const present = students.filter(s => s.status === 'present').length;
     const absent = total - present;
     
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.text(`إجمالي الطلاب: ${total}`, 20, 45);
-    doc.text(`الحضور: ${present}`, 20, 55);
-    doc.text(`الغياب: ${absent}`, 20, 65);
+    doc.text(`total students: ${total}`, 20, 45);
+    doc.text(`Attendance: ${present}`, 20, 55);
+    doc.text(`absence: ${absent}`, 20, 65);
     
-    // إنشاء جدول الطلاب
     let yPosition = 80;
     doc.setFillColor(102, 126, 234);
     doc.rect(20, yPosition - 5, 170, 10, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
-    doc.text('اسم الطالب', 30, yPosition);
-    doc.text('الحالة', 140, yPosition);
+    doc.text('name student :', 30, yPosition);
+    doc.text('status :', 140, yPosition);
     
     yPosition += 10;
     doc.setTextColor(0, 0, 0);
@@ -170,25 +163,18 @@ function generatePDF() {
             yPosition = 20;
         }
         
-        // تلوين الصفوف بالتناوب
         if (index % 2 === 0) {
             doc.setFillColor(245, 245, 245);
             doc.rect(20, yPosition - 5, 170, 10, 'F');
         }
         
         doc.text(student.name, 30, yPosition);
-        doc.text(student.status === 'present' ? '✅ حاضر' : '❌ غائب', 140, yPosition);
+        doc.text(student.status === 'present' ? 'Attendance' : 'absence', 140, yPosition);
         
         yPosition += 10;
     });
     
-    // حفظ الملف
-    doc.save('تقرير_الحضور_والغياب.pdf');
-}
-
-
-
-        
-
+    doc.save('Attendance and absence report.pdf');
+    }
 
         loadFromStorage();
