@@ -177,4 +177,3 @@ function generatePDF() {
     doc.save('Attendance and absence report.pdf');
     }
 
-        loadFromStorage();
